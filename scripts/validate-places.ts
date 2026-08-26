@@ -38,6 +38,11 @@ const foodTypeTags = new Set([
   "天婦羅",
   "牛肉料理",
 ]);
+const placeholderValues = new Set([
+  "出發前確認最新營業時間",
+  "候選清單",
+  "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
+]);
 const placeSchema = z
   .object({
     id: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
@@ -68,6 +73,10 @@ const placeSchema = z
       context.addIssue({ code: "custom", path: ["tabelog"], message: "餐廳必須有 Tabelog 資料" });
     if (place.category === "餐廳" && !place.tags.some((tag) => foodTypeTags.has(tag)))
       context.addIssue({ code: "custom", path: ["tags"], message: "餐廳必須有食物種類標籤" });
+    for (const field of ["hours", "stay", "note"] as const) {
+      if (placeholderValues.has(place[field]))
+        context.addIssue({ code: "custom", path: [field], message: "不得使用共用模板內容" });
+    }
   });
 
 const result = z.array(placeSchema).safeParse(places);
