@@ -805,11 +805,34 @@ button {
   color: color-mix(in srgb, var(--category-color) 72%, var(--ink));
   font-size: 12px;
   font-weight: 700;
+  cursor: pointer;
+  transition:
+    border-color 0.15s ease,
+    color 0.15s ease,
+    background-color 0.15s ease,
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.filters .filter:hover {
+  border-color: var(--category-color);
+  color: var(--category-color);
+  transform: translateY(-1px);
+}
+
+.filters .filter:focus-visible {
+  outline: 3px solid rgba(238, 75, 43, 0.3);
+  outline-offset: 2px;
 }
 
 .filters .filter.active {
   border-color: var(--category-color);
   background: var(--category-color);
+  color: var(--category-contrast);
+  box-shadow: 3px 3px 0 var(--ink);
+}
+
+.filters .filter.active:hover {
   color: var(--category-contrast);
   box-shadow: 3px 3px 0 var(--ink);
 }
