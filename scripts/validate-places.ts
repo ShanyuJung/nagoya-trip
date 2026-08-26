@@ -2,6 +2,42 @@ import { z } from "zod";
 import { places } from "../src/data/places";
 
 const url = z.string().url();
+const foodTypeTags = new Set([
+  "巴西烤肉",
+  "燒肉",
+  "成吉思汗烤肉",
+  "羊肉",
+  "牛肉",
+  "炸豬排",
+  "味噌烏龍麵",
+  "烏龍麵",
+  "鍋物",
+  "鰻魚飯",
+  "日式料理",
+  "咖啡廳",
+  "喫茶店",
+  "豬排飯",
+  "洋食",
+  "拉麵",
+  "沾麵",
+  "中華料理",
+  "餃子",
+  "內臟燒肉",
+  "海鮮",
+  "牡蠣",
+  "河豚",
+  "炸雞",
+  "炭烤",
+  "壽喜燒",
+  "松阪牛",
+  "居酒屋",
+  "可樂餅",
+  "和菓子",
+  "甜點",
+  "伊勢烏龍麵",
+  "天婦羅",
+  "牛肉料理",
+]);
 const placeSchema = z
   .object({
     id: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
@@ -30,6 +66,8 @@ const placeSchema = z
       context.addIssue({ code: "custom", path: ["position"], message: "餐廳必須有座標" });
     if (place.category === "餐廳" && !place.tabelog)
       context.addIssue({ code: "custom", path: ["tabelog"], message: "餐廳必須有 Tabelog 資料" });
+    if (place.category === "餐廳" && !place.tags.some((tag) => foodTypeTags.has(tag)))
+      context.addIssue({ code: "custom", path: ["tags"], message: "餐廳必須有食物種類標籤" });
   });
 
 const result = z.array(placeSchema).safeParse(places);
