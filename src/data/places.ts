@@ -174,7 +174,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "巴西烤肉", "燒肉", "吃到飽"],
     maps: "https://maps.app.goo.gl/YF7xtXbG4bTgGH6K9",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230103/23090273/",
@@ -194,7 +194,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "成吉思汗烤肉", "燒肉", "羊肉"],
     maps: "https://maps.app.goo.gl/qH2EhTH76ZjfY6Pg8",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230110/23049132/",
@@ -214,7 +214,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "燒肉", "牛肉"],
     maps: "https://maps.app.goo.gl/QSiQq2WBnsZPWeKf9",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230103/23071686/",
@@ -234,7 +234,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "炸豬排"],
     maps: "https://maps.app.goo.gl/XsAAJjWjYo1tkCd39",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230101/23073675/",
@@ -254,7 +254,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "味噌烏龍麵", "烏龍麵", "鍋物"],
     maps: "https://maps.app.goo.gl/ZEm3NrPeJjdFoXaGA",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230103/23000111/",
@@ -265,8 +265,8 @@ export const places: Place[] = [
   },
   {
     id: "atsuta-horaiken",
-    name: "熱田蓬萊軒（松阪屋店）",
-    nameJa: "熱田蓬萊軒（松阪屋店）",
+    name: "熱田蓬萊軒 松坂屋店",
+    nameJa: "あつた蓬莱軒 松坂屋店",
     category: PlaceCategory.Restaurant,
     categoryEn: "RESTAURANT",
     position: [35.164522, 136.907932],
@@ -274,11 +274,11 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "鰻魚飯", "日式料理"],
     maps: "https://maps.app.goo.gl/94Mz31ZzTGMunjE58",
     tabelog: {
-      url: "https://tabelog.com/aichi/A2301/A230112/23000109/",
-      rating: 3.71,
+      url: "https://tabelog.com/aichi/A2301/A230103/23000108/",
+      rating: 3.69,
       verifiedAt: "2026-08-26",
     },
     verified: true,
@@ -294,7 +294,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "咖啡廳", "喫茶店"],
     maps: "https://maps.app.goo.gl/tJyFnpnFvsFEcXA6A",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230101/23005509/",
@@ -314,7 +314,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "炸豬排", "豬排飯"],
     maps: "https://maps.app.goo.gl/zPSzN6QHyUU2kuty8",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230110/23037296/",
@@ -334,7 +334,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "咖啡廳", "洋食"],
     maps: "https://maps.app.goo.gl/wWQ4zJsHXoX3eneH8",
     tabelog: {
       url: "https://tabelog.com/mie/A2402/A240203/24020035/",
@@ -354,7 +354,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "拉麵"],
     maps: "https://maps.app.goo.gl/rsYcQsG1xXW7myVn8",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230103/23009583/",
@@ -374,7 +374,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "拉麵", "沾麵"],
     maps: "https://maps.app.goo.gl/EEsomtdyrpnQxV496",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230112/23055953/",
@@ -394,7 +394,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "炸豬排", "豬排飯"],
     maps: "https://maps.app.goo.gl/8XN6tzEpxnbDs5wv5",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230110/23080758/",
@@ -414,7 +414,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "中華料理", "拉麵"],
     maps: "https://maps.app.goo.gl/QaF9kTLHPXeCDT729",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230113/23011919/",
@@ -434,7 +434,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "拉麵", "沾麵"],
     maps: "https://maps.app.goo.gl/68fH3u9gzuT9EArq8",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230101/23060674/",
@@ -454,7 +454,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "名古屋候選", "愛知"],
+    tags: ["吃喝", "名古屋候選", "愛知", "餃子", "內臟燒肉"],
     maps: "https://share.google/SdVmUUPkX2icJvlZ6",
     tabelog: {
       url: "https://tabelog.com/aichi/A2301/A230106/23074203/",
@@ -474,7 +474,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "海鮮"],
     maps: "https://maps.app.goo.gl/SyBPZTm8Nve5qh2S8",
     tabelog: {
       url: "https://tabelog.com/mie/A2403/A240302/24003642/",
@@ -494,7 +494,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "牡蠣", "海鮮"],
     maps: "https://maps.app.goo.gl/cnxTMPpwHPh3VCny8",
     tabelog: {
       url: "https://tabelog.com/mie/A2403/A240303/24018818/",
@@ -514,7 +514,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "海鮮"],
     maps: "https://maps.app.goo.gl/bgLiXMJjrMzkAVaz8",
     tabelog: {
       url: "https://tabelog.com/mie/A2403/A240302/24010333/",
@@ -534,7 +534,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "海鮮", "河豚"],
     maps: "https://maps.app.goo.gl/hY5QHbcQ3AVaUmSq8",
     tabelog: {
       url: "https://tabelog.com/mie/A2403/A240301/24001188/",
@@ -554,7 +554,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "餃子", "炸雞"],
     maps: "https://maps.app.goo.gl/pcjknCPQRh6QY47Z6",
     tabelog: {
       url: "https://tabelog.com/mie/A2403/A240301/24000014/",
@@ -574,7 +574,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "海鮮", "炭烤"],
     maps: "https://maps.app.goo.gl/DmJWCMGrxihxDKj26",
     official: "https://amakoya.com/",
     tabelog: {
@@ -595,7 +595,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "壽喜燒", "松阪牛", "鍋物"],
     maps: "https://maps.app.goo.gl/zq1s5qUipaDsAxKN7",
     tabelog: {
       url: "https://tabelog.com/mie/A2401/A240102/24000055/",
@@ -615,7 +615,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "居酒屋", "海鮮", "日式料理"],
     maps: "https://maps.app.goo.gl/CvrdzSgVektLKHYEA",
     tabelog: {
       url: "https://tabelog.com/mie/A2403/A240301/24005695/",
@@ -635,7 +635,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "海鮮", "可樂餅"],
     maps: "https://maps.app.goo.gl/8HAefsZxP8Mb888G6",
     tabelog: {
       url: "https://tabelog.com/mie/A2403/A240302/24000445/",
@@ -655,7 +655,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "燒肉", "松阪牛", "壽喜燒"],
     maps: "https://maps.app.goo.gl/G9cB7AXG7yG789HGA",
     tabelog: {
       url: "https://tabelog.com/mie/A2401/A240102/24000073/",
@@ -675,7 +675,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "和菓子", "甜點", "咖啡廳"],
     maps: "https://maps.app.goo.gl/JiboLmKAjmiifNhX7",
     tabelog: {
       url: "https://tabelog.com/mie/A2403/A240301/24006852/",
@@ -695,7 +695,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "三重候選", "三重"],
+    tags: ["吃喝", "三重候選", "三重", "壽喜燒", "松阪牛"],
     maps: "https://maps.app.goo.gl/7puEssUz8GcAVMyp7",
     tabelog: {
       url: "https://tabelog.com/mie/A2401/A240102/24000069/",
@@ -715,7 +715,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "內宮周邊", "三重"],
+    tags: ["吃喝", "內宮周邊", "三重", "咖啡廳"],
     maps: "https://maps.app.goo.gl/adGgJc3WTm934Hk66",
     tabelog: {
       url: "https://tabelog.com/mie/A2403/A240301/24017918/",
@@ -735,7 +735,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "內宮周邊", "三重"],
+    tags: ["吃喝", "內宮周邊", "三重", "伊勢烏龍麵", "烏龍麵", "天婦羅"],
     maps: "https://maps.app.goo.gl/K4ePPoYHLDniQ5p7A",
     tabelog: {
       url: "https://tabelog.com/mie/A2403/A240301/24000009/",
@@ -755,7 +755,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "內宮周邊", "三重"],
+    tags: ["吃喝", "內宮周邊", "三重", "可樂餅", "牛肉料理"],
     maps: "https://maps.app.goo.gl/7V5nq27M96T3AMi66",
     tabelog: {
       url: "https://tabelog.com/mie/A2403/A240301/24000010/",
@@ -775,7 +775,7 @@ export const places: Place[] = [
     hours: "出發前確認最新營業時間",
     stay: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
-    tags: ["吃喝", "內宮周邊", "三重"],
+    tags: ["吃喝", "內宮周邊", "三重", "和菓子", "甜點"],
     maps: "https://maps.app.goo.gl/J91zwFKEsba4xtFq8",
     tabelog: {
       url: "https://tabelog.com/mie/A2403/A240301/24000008/",
