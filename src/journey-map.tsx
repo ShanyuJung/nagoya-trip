@@ -59,7 +59,7 @@ export function JourneyMap({
           <Popup>
             <strong>{item.name}</strong>
             <br />
-            {item.area} · {item.schedule}
+            {item.address} · {item.stay}
           </Popup>
         </CircleMarker>
       ))}

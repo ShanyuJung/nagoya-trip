@@ -1,16 +1,22 @@
 import { useMemo, useState, type CSSProperties } from "react";
 import { JourneyMap } from "./journey-map";
-import { places, type Place, type PlaceCategory } from "./data/places";
+import { PlaceCategory, places, type Place } from "./data/places";
 
-const categories = ["全部", "美食", "景點", "住宿", "活動"] as const;
+const categories = [
+  "全部",
+  PlaceCategory.Restaurant,
+  PlaceCategory.Attraction,
+  PlaceCategory.Lodging,
+  PlaceCategory.Event,
+] as const;
 type CategoryFilter = (typeof categories)[number];
 type MappablePlace = Place & { position: [number, number] };
 
 const colors: Record<PlaceCategory, string> = {
-  美食: "#c94732",
-  景點: "#315f63",
-  住宿: "#665b7c",
-  活動: "#bd762b",
+  [PlaceCategory.Restaurant]: "#e0a52b",
+  [PlaceCategory.Attraction]: "#187f8c",
+  [PlaceCategory.Lodging]: "#7656a8",
+  [PlaceCategory.Event]: "#ee4b2b",
 };
 
 function hasPosition(place: Place): place is MappablePlace {
@@ -22,7 +28,6 @@ export default function App() {
   const [query, setQuery] = useState("");
   const [activeTag, setActiveTag] = useState<string | null>(null);
   const [selected, setSelected] = useState<Place | null>(null);
-  const [showNotes, setShowNotes] = useState(false);
 
   const tags = useMemo(() => {
     const counts = new Map<string, number>();
@@ -38,7 +43,7 @@ export default function App() {
       if (category !== "全部" && item.category !== category) return false;
       if (activeTag && !item.tags.includes(activeTag)) return false;
       if (!keyword) return true;
-      return [item.name, item.area, item.schedule, item.note, ...item.tags]
+      return [item.name, item.nameJa, item.address, item.hours, item.stay, item.note, ...item.tags]
         .join(" ")
         .toLocaleLowerCase()
         .includes(keyword);
@@ -68,9 +73,6 @@ export default function App() {
             旅程
           </h1>
           <p>從名古屋一路走到伊勢、鳥羽與志摩。五日安排、住宿與候選餐廳，全都收進同一張地圖。</p>
-          <button className="notes-button" type="button" onClick={() => setShowNotes(true)}>
-            五日行程速覽 <span aria-hidden="true">＋</span>
-          </button>
         </header>
 
         <label className="search-box">
@@ -96,7 +98,13 @@ export default function App() {
             <button
               key={item}
               type="button"
-              className={category === item ? "active" : ""}
+              className={`filter ${category === item ? "active" : ""}`}
+              style={
+                {
+                  "--category-color": item === "全部" ? "#15221f" : colors[item],
+                  "--category-contrast": item === PlaceCategory.Restaurant ? "#15221f" : "#fff",
+                } as CSSProperties
+              }
               onClick={() => {
                 setCategory(item);
                 setSelected(null);
@@ -112,14 +120,16 @@ export default function App() {
           ))}
         </div>
 
-        <div className="tag-area">
-          <div className="tag-heading">
+        <div className="tag-filter">
+          <div className="tag-filter-heading">
             <span>依日期與地區篩選</span>
-            <button type="button" onClick={reset}>
-              重置篩選
-            </button>
+            <div className="tag-filter-actions">
+              <button type="button" onClick={reset}>
+                重置篩選
+              </button>
+            </div>
           </div>
-          <div className="tag-list">
+          <div className="tag-options">
             {tags.slice(0, 14).map(([tag, count]) => (
               <button
                 key={tag}
@@ -145,56 +155,74 @@ export default function App() {
             <article
               key={item.id}
               className={`place-card ${selected?.id === item.id ? "selected" : ""}`}
-              style={{ "--category": colors[item.category] } as CSSProperties}
+              style={
+                {
+                  "--category": colors[item.category],
+                  "--category-color": colors[item.category],
+                  "--category-contrast":
+                    item.category === PlaceCategory.Restaurant ? "#15221f" : "#fff",
+                } as CSSProperties
+              }
               onClick={() => setSelected(item)}
             >
-              <div className="card-meta">
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <b>{item.categoryEn}</b>
-                <small>{item.area}</small>
+              <div className="card-topline">
+                <span className="number">{String(index + 1).padStart(2, "0")}</span>
+                <span className="category">{item.categoryEn}</span>
+                <span className={`status ${item.verified === false ? "pending" : ""}`}>
+                  <i />
+                  {item.verified === false ? "營業資訊待核對" : "營業資訊已核對"}
+                </span>
               </div>
               <h2>{item.name}</h2>
+              <div className="place-subline">
+                <p className="jp">{item.nameJa}</p>
+                {item.tabelog?.rating && (
+                  <span className="tabelog-meta">
+                    <span className="tabelog-score">
+                      <span>Tabelog</span>
+                      <strong>{item.tabelog.rating.toFixed(2)}</strong>
+                    </span>
+                    {item.tabelog.verifiedAt && (
+                      <small>{item.tabelog.verifiedAt.replace(/-/g, ".")}</small>
+                    )}
+                  </span>
+                )}
+              </div>
               <div className="facts">
                 <div>
-                  <span>安排</span>
-                  <strong>{item.schedule}</strong>
+                  <span>營業時間</span>
+                  <strong>{item.hours}</strong>
                 </div>
                 <div>
-                  <span>地區</span>
-                  <strong>{item.area}</strong>
+                  <span>安排建議</span>
+                  <strong>{item.stay}</strong>
                 </div>
               </div>
               <p className="description">{item.note}</p>
-              {item.tabelog && (
-                <div className="tabelog-meta">
-                  <strong>食べログ {item.tabelog.rating.toFixed(2)}</strong>
-                  <span>確認日 {item.tabelog.verifiedAt}</span>
-                </div>
-              )}
-              <div className="card-tags">
+              <div className="tags">
                 {item.tags.map((tag) => (
                   <span key={tag}>{tag}</span>
                 ))}
               </div>
               <div className="actions">
                 <a className="primary" href={item.maps} target="_blank" rel="noreferrer">
-                  開啟地圖 ↗
+                  開啟 Google Maps ↗
                 </a>
                 {item.official && (
-                  <a href={item.official} target="_blank" rel="noreferrer">
-                    相關連結
+                  <a className="secondary" href={item.official} target="_blank" rel="noreferrer">
+                    官方資料
                   </a>
                 )}
                 {item.tabelog && (
-                  <a href={item.tabelog.url} target="_blank" rel="noreferrer">
-                    食べログ
+                  <a className="secondary" href={item.tabelog.url} target="_blank" rel="noreferrer">
+                    Tabelog
                   </a>
                 )}
               </div>
             </article>
           ))}
           {visible.length === 0 && (
-            <div className="empty">
+            <div className="empty-state">
               <b>找不到符合條件的地點</b>
               <span>試試其他關鍵字或重置篩選。</span>
             </div>
@@ -219,8 +247,8 @@ export default function App() {
             <small>11/7 至 11/11 · 五日旅程</small>
           </div>
         </div>
-        <div className="legend">
-          {(["美食", "景點", "住宿", "活動"] as PlaceCategory[]).map((item) => (
+        <div className="map-legend">
+          {Object.values(PlaceCategory).map((item) => (
             <span key={item}>
               <i style={{ background: colors[item] }} />
               {item}
@@ -228,56 +256,6 @@ export default function App() {
           ))}
         </div>
       </section>
-
-      {showNotes && (
-        <div className="modal-backdrop" role="presentation" onMouseDown={() => setShowNotes(false)}>
-          <section
-            className="travel-notes"
-            role="dialog"
-            aria-modal="true"
-            aria-labelledby="notes-title"
-            onMouseDown={(event) => event.stopPropagation()}
-          >
-            <button
-              className="modal-close"
-              type="button"
-              aria-label="關閉"
-              onClick={() => setShowNotes(false)}
-            >
-              ×
-            </button>
-            <span>NAGOYA · ISE · 5 DAYS</span>
-            <h2 id="notes-title">五天，從愛知走進三重。</h2>
-            <div className="note-grid">
-              <article>
-                <b>DAY 01 · 11/7</b>
-                <h3>抵達名古屋</h3>
-                <p>入住 Domus OZONE，先熟悉市區交通與周邊動線。</p>
-              </article>
-              <article>
-                <b>DAY 02 · 11/8</b>
-                <h3>名古屋與 YOASOBI</h3>
-                <p>白天從候選餐廳挑一間，晚間前往演唱會場館並預留散場時間。</p>
-              </article>
-              <article>
-                <b>DAY 03 · 11/9</b>
-                <h3>移動至伊勢</h3>
-                <p>轉往三重並入住伊勢住宿；依抵達時間安排市區晚餐。</p>
-              </article>
-              <article>
-                <b>DAY 04 · 11/10</b>
-                <h3>鳥羽與志摩</h3>
-                <p>鳥羽水族館、二見興玉神社或橫山展望台可依天候擇一至二處。</p>
-              </article>
-              <article>
-                <b>DAY 05 · 11/11</b>
-                <h3>伊勢神宮內宮</h3>
-                <p>內宮、御蔭橫丁與赤福等周邊美食串成一條步行路線。</p>
-              </article>
-            </div>
-          </section>
-        </div>
-      )}
     </main>
   );
 }
