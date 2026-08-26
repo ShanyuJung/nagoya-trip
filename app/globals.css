@@ -825,6 +825,65 @@ button {
   box-shadow: none;
 }
 
+.tag-filter {
+  flex-shrink: 0;
+  padding: 6px 0 18px;
+  border-bottom: 1px solid var(--line);
+}
+
+.tag-filter-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 9px;
+  color: #7c827e;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.tag-filter-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.tag-options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.tag-options > button {
+  width: auto;
+  padding: 5px 9px;
+  border: 1px solid #d7d1c6;
+  border-radius: 999px;
+  background: #fffdf8;
+  color: #68736e;
+  box-shadow: none;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+.tag-options > button:hover {
+  border-color: var(--orange);
+  color: var(--orange);
+}
+
+.tag-options > button.active {
+  border-color: var(--ink);
+  background: var(--ink);
+  color: white;
+}
+
+.tag-options b {
+  margin-left: 4px;
+  font-size: 8px;
+  opacity: 0.55;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
