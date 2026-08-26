@@ -47,7 +47,7 @@ const placeSchema = z
   .object({
     id: z.string().regex(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
     name: z.string().min(1),
-    category: z.enum(["餐廳", "景點", "住宿", "活動"]),
+    category: z.enum(["餐廳", "景點", "購物", "住宿", "活動"]),
     categoryEn: z.string().min(1),
     position: z.tuple([z.number(), z.number()]).nullable(),
     nameJa: z.string().min(1),

@@ -6,6 +6,7 @@ const categories = [
   "全部",
   PlaceCategory.Restaurant,
   PlaceCategory.Attraction,
+  PlaceCategory.Shopping,
   PlaceCategory.Lodging,
   PlaceCategory.Event,
 ] as const;
@@ -15,8 +16,9 @@ type MappablePlace = Place & { position: [number, number] };
 const colors: Record<PlaceCategory, string> = {
   [PlaceCategory.Restaurant]: "#e0a52b",
   [PlaceCategory.Attraction]: "#187f8c",
+  [PlaceCategory.Shopping]: "#ee4b2b",
   [PlaceCategory.Lodging]: "#7656a8",
-  [PlaceCategory.Event]: "#ee4b2b",
+  [PlaceCategory.Event]: "#bd762b",
 };
 
 function hasPosition(place: Place): place is MappablePlace {

@@ -1,6 +1,7 @@
 export enum PlaceCategory {
   Restaurant = "餐廳",
   Attraction = "景點",
+  Shopping = "購物",
   Lodging = "住宿",
   Event = "活動",
 }
@@ -33,7 +34,8 @@ type RestaurantPlace = BasePlace & {
 };
 
 type NonRestaurantPlace = BasePlace & {
-  category: PlaceCategory.Attraction | PlaceCategory.Lodging | PlaceCategory.Event;
+  category:
+    PlaceCategory.Attraction | PlaceCategory.Shopping | PlaceCategory.Lodging | PlaceCategory.Event;
   tabelog?: never;
 };
 
@@ -69,6 +71,22 @@ export const places: Place[] = [
     note: "名古屋段的主要活動，當天往返場館請預留散場人潮與交通時間。",
     tags: ["演唱會", "已排定"],
     maps: "https://maps.app.goo.gl/GrZgx2pvCXuEo8Rp8",
+    verified: true,
+  },
+  {
+    id: "pokemon-center-nagoya",
+    name: "Pokémon Center Nagoya",
+    nameJa: "ポケモンセンターナゴヤ",
+    category: PlaceCategory.Shopping,
+    categoryEn: "SHOPPING",
+    position: [35.1634818, 136.9080351],
+    address: "愛知縣名古屋市中區榮 3-29-1，名古屋 PARCO 東館 2F",
+    hours: "每日 10:00–20:00；休館日依名古屋 PARCO 公告",
+    stay: "可排入榮、矢場町購物行程，建議停留 60–90 分鐘",
+    note: "位於名古屋 PARCO 東館 2 樓的 Pokémon 官方商店，販售原創周邊、遊戲與卡牌商品；店內可看到皮卡丘、時拉比與金色鯉魚王等名古屋店特色展示。",
+    tags: ["寶可夢", "官方商店", "角色周邊", "Pokémon Card", "名古屋 PARCO", "榮", "愛知"],
+    maps: "https://www.google.com/maps/search/?api=1&query=Pokemon+Center+Nagoya",
+    official: "https://www.pokemon.co.jp/shop/?inc=gnav",
     verified: true,
   },
   {
