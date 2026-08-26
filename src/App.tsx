@@ -165,6 +165,12 @@ export default function App() {
                 </div>
               </div>
               <p className="description">{item.note}</p>
+              {item.tabelog && (
+                <div className="tabelog-meta">
+                  <strong>食べログ {item.tabelog.rating.toFixed(2)}</strong>
+                  <span>確認日 {item.tabelog.verifiedAt}</span>
+                </div>
+              )}
               <div className="card-tags">
                 {item.tags.map((tag) => (
                   <span key={tag}>{tag}</span>
@@ -177,6 +183,11 @@ export default function App() {
                 {item.official && (
                   <a href={item.official} target="_blank" rel="noreferrer">
                     相關連結
+                  </a>
+                )}
+                {item.tabelog && (
+                  <a href={item.tabelog.url} target="_blank" rel="noreferrer">
+                    食べログ
                   </a>
                 )}
               </div>

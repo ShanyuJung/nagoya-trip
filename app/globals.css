@@ -291,6 +291,23 @@ button {
   font-size: 12px;
   line-height: 1.7;
 }
+
+.tabelog-meta {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+  margin-top: 0.65rem;
+  color: #8f3829;
+  font-size: 0.75rem;
+}
+
+.tabelog-meta strong {
+  font-size: 0.88rem;
+}
+
+.tabelog-meta span {
+  color: #7b746d;
+}
 .card-tags {
   display: flex;
   flex-wrap: wrap;

@@ -1,5 +1,11 @@
 export type PlaceCategory = "美食" | "景點" | "住宿" | "活動";
 
+export type TabelogInfo = {
+  url: string;
+  rating: number;
+  verifiedAt: string;
+};
+
 export type Place = {
   id: string;
   name: string;
@@ -12,6 +18,139 @@ export type Place = {
   tags: string[];
   maps: string;
   official?: string;
+  tabelog?: TabelogInfo;
+};
+
+type RestaurantDetail = {
+  position: [number, number];
+  tabelog?: Omit<TabelogInfo, "verifiedAt">;
+};
+
+const restaurantDetails: Record<string, RestaurantDetail> = {
+  "alma-de-churrasco": {
+    position: [35.1668812, 136.9033964],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230103/23090273/", rating: 3.63 },
+  },
+  namaramucho: {
+    position: [35.1878318, 136.9133027],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230110/23049132/", rating: 3.73 },
+  },
+  "setsugekka-tanaka": {
+    position: [35.1673739, 136.9038268],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230103/23071686/", rating: 3.95 },
+  },
+  "katuretu-matumura": {
+    position: [35.1720523, 136.8844986],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230101/23073675/", rating: 3.69 },
+  },
+  yamamotoya: {
+    position: [35.1659387, 136.9045562],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230103/23000111/", rating: 3.38 },
+  },
+  "atsuta-horaiken": {
+    position: [35.164522, 136.907932],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230112/23000109/", rating: 3.71 },
+  },
+  "coffee-house-kako": {
+    position: [35.1701693, 136.8903354],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230101/23005509/", rating: 3.74 },
+  },
+  yadakatsu: {
+    position: [35.1940645, 136.941678],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230110/23037296/", rating: 3.73 },
+  },
+  raz: {
+    position: [35.0573565, 136.7187477],
+    tabelog: { url: "https://tabelog.com/mie/A2402/A240203/24020035/", rating: 3.47 },
+  },
+  rakeiko: {
+    position: [35.1673318, 136.9115006],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230103/23009583/", rating: 3.63 },
+  },
+  "ramen-ajisai": {
+    position: [35.1268, 136.879544],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230112/23055953/", rating: 4.06 },
+  },
+  "katsudon-daiki": {
+    position: [35.1933491, 136.9116356],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230110/23080758/", rating: 3.55 },
+  },
+  "taiwan-ramen-koyo": {
+    position: [35.2304379, 136.8973604],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230113/23011919/", rating: 3.53 },
+  },
+  shishimaru: {
+    position: [35.1744608, 136.8793602],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230101/23060674/", rating: 3.75 },
+  },
+  "tsukachan-gyoza": {
+    position: [35.1727, 136.929],
+    tabelog: { url: "https://tabelog.com/aichi/A2301/A230106/23074203/", rating: 3.43 },
+  },
+  mutsumi: {
+    position: [34.4625143, 136.8559029],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240302/24003642/", rating: 3.55 },
+  },
+  "matoya-kaki-terrace": {
+    position: [34.367959, 136.8599882],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240303/24018818/", rating: 3.59 },
+  },
+  "mizunuma-sazae": {
+    position: [34.4860983, 136.8438024],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240302/24010333/", rating: 3.58 },
+  },
+  "yamatoya-kuroishi": {
+    position: [34.4845445, 136.7203497],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240301/24001188/", rating: 3.5 },
+  },
+  "gyoza-misuzu": {
+    position: [34.4942434, 136.6984842],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240301/24000014/", rating: 3.72 },
+  },
+  "amakoya-hachimankamado": {
+    position: [34.3883522, 136.8985553],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240302/24008738/", rating: 3.12 },
+  },
+  gyugin: {
+    position: [34.5792122, 136.5284729],
+    tabelog: { url: "https://tabelog.com/mie/A2401/A240102/24000055/", rating: 3.76 },
+  },
+  "mukai-sake": {
+    position: [34.4941086, 136.7088432],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240301/24005695/", rating: 3.75 },
+  },
+  "sazanami-toba": {
+    position: [34.4835783, 136.8428997],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240302/24000445/", rating: 3.75 },
+  },
+  isshobin: {
+    position: [34.5691725, 136.5334766],
+    tabelog: { url: "https://tabelog.com/mie/A2401/A240102/24000073/", rating: 3.74 },
+  },
+  asahiya: {
+    position: [34.5057168, 136.7772367],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240301/24006852/", rating: 3.46 },
+  },
+  wadakin: {
+    position: [34.5772338, 136.5310777],
+    tabelog: { url: "https://tabelog.com/mie/A2401/A240102/24000069/", rating: 4.13 },
+  },
+  "starbucks-naiku": {
+    position: [34.4610037, 136.7233059],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240301/24017918/", rating: 3.27 },
+  },
+  fukusuke: {
+    position: [34.4623643, 136.723149],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240301/24000009/", rating: 3.6 },
+  },
+  butasute: {
+    position: [34.4620693, 136.7229009],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240301/24000010/", rating: 3.49 },
+  },
+  akafuku: {
+    position: [34.4626629, 136.7235667],
+    tabelog: { url: "https://tabelog.com/mie/A2403/A240301/24000008/", rating: 3.59 },
+  },
 };
 
 const categoryEn: Record<PlaceCategory, string> = {
@@ -32,6 +171,8 @@ function food(
   maps: string,
   official?: string,
 ): Place {
+  const detail = restaurantDetails[id];
+  if (!detail) throw new Error(`Missing restaurant details: ${id}`);
   const regionTags =
     area === "名古屋"
       ? ["名古屋候選", "愛知"]
@@ -40,13 +181,14 @@ function food(
     id,
     name,
     category: "美食",
-    position: null,
+    position: detail.position,
     area,
     schedule: "候選清單",
     note: "收錄於 Notion 旅遊資料的候選餐廳，出發前可依當天路線與候位狀況安排。",
     tags: ["吃喝", ...regionTags],
     maps,
-    official,
+    official: official?.includes("tabelog.com") ? undefined : official,
+    tabelog: detail.tabelog ? { ...detail.tabelog, verifiedAt: "2026-08-26" } : undefined,
   });
 }
 
@@ -184,7 +326,7 @@ export const places: Place[] = [
     "https://maps.app.goo.gl/tJyFnpnFvsFEcXA6A",
   ),
   food("yadakatsu", "矢田かつ", "名古屋", "https://maps.app.goo.gl/zPSzN6QHyUU2kuty8"),
-  food("raz", "Raz", "名古屋", "https://maps.app.goo.gl/wWQ4zJsHXoX3eneH8"),
+  food("raz", "Raz", "三重", "https://maps.app.goo.gl/wWQ4zJsHXoX3eneH8"),
   food(
     "rakeiko",
     "極太濁流らーめん ら・けいこ",
