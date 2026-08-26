@@ -907,6 +907,36 @@ button {
   opacity: 0.55;
 }
 
+.place-card .actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 8px;
+  margin-top: 18px;
+}
+
+.place-card .actions a {
+  width: auto;
+  min-height: 0;
+  padding: 11px 10px;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  text-align: center;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.place-card .actions .primary {
+  border-color: var(--category-color);
+  background: var(--category-color);
+  color: var(--category-contrast);
+}
+
+.place-card .actions .secondary {
+  background: transparent;
+  color: var(--ink);
+}
+
 .scroll-to-top {
   position: fixed;
   z-index: 1000;
