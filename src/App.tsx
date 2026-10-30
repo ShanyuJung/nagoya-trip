@@ -15,6 +15,7 @@ const categories = [
 type CategoryFilter = (typeof categories)[number];
 type MappablePlace = Place & { position: [number, number] };
 type PageView = "places" | "itinerary";
+type TravelMode = "driving" | "transit";
 
 const colors: Record<PlaceCategory, string> = {
   [PlaceCategory.Restaurant]: "#e0a52b",
@@ -35,6 +36,12 @@ function initialItineraryDay() {
     if (itineraryDays.some((day) => day.id === date)) return date;
   }
   return itineraryDays[0]?.id ?? "11/7";
+}
+
+function navigationUrl(from: MappablePlace, to: MappablePlace, mode: TravelMode) {
+  const origin = from.position.join(",");
+  const destination = to.position.join(",");
+  return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=${mode}`;
 }
 
 function PlaceCard({
@@ -184,6 +191,7 @@ export default function App() {
       });
   }, [itineraryDay]);
   const mapPlaces = pageView === "itinerary" ? itineraryPlaces : mappable;
+  const travelMode: TravelMode = ["11/10", "11/11"].includes(activeDay) ? "driving" : "transit";
 
   function reset() {
     setCategory("全部");
@@ -364,13 +372,23 @@ export default function App() {
                 <span>DAY {itineraryDays.indexOf(itineraryDay) + 1}</span>
                 <h3>{itineraryDay.label}</h3>
               </div>
-              <b>{itineraryPlaces.length} 個地圖標記</b>
+              <b>
+                {itineraryPlaces.length} 個地圖標記 ·
+                {travelMode === "driving" ? " 自駕導航" : " 大眾運輸導航"}
+              </b>
             </div>
             <div className="timeline">
               {itineraryDay.items.map((item, index) => {
                 const place = item.placeId
                   ? places.find((candidate) => candidate.id === item.placeId)
                   : undefined;
+                const mappablePlace = place && hasPosition(place) ? place : undefined;
+                const nextPlace = itineraryDay.items.slice(index + 1).flatMap((nextItem) => {
+                  const candidate = nextItem.placeId
+                    ? places.find((placeItem) => placeItem.id === nextItem.placeId)
+                    : undefined;
+                  return candidate && hasPosition(candidate) ? [candidate] : [];
+                })[0];
                 return (
                   <article
                     key={item.id}
@@ -399,7 +417,21 @@ export default function App() {
                       <span>{item.category}</span>
                       <h4>{item.title}</h4>
                       {item.description && <p>{item.description}</p>}
-                      {place && <b>查看地點卡片 ＋</b>}
+                      {place && (
+                        <div className="itinerary-item-actions">
+                          <b>查看地點卡片 ＋</b>
+                          {mappablePlace && nextPlace && (
+                            <a
+                              href={navigationUrl(mappablePlace, nextPlace, travelMode)}
+                              target="_blank"
+                              rel="noreferrer"
+                              onClick={(event) => event.stopPropagation()}
+                            >
+                              {travelMode === "driving" ? "自駕" : "大眾運輸"}到下一站 ↗
+                            </a>
+                          )}
+                        </div>
+                      )}
                     </div>
                     <i aria-label={place ? "已有地圖標記" : "尚無地圖座標"} />
                   </article>

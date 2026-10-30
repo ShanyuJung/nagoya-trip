@@ -792,10 +792,24 @@ button {
 }
 .timeline-content b {
   display: inline-block;
-  margin-top: 8px;
   color: var(--itinerary-category);
   font-size: 9px;
   letter-spacing: 0.04em;
+}
+.itinerary-item-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin-top: 9px;
+}
+.timeline-content .itinerary-item-actions a {
+  margin: 0;
+  padding: 5px 8px;
+  border: 1px solid var(--itinerary-category);
+  background: color-mix(in srgb, var(--itinerary-category) 7%, white);
+  color: var(--itinerary-category);
 }
 .timeline-content a {
   display: inline-block;
