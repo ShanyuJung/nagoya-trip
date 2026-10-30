@@ -698,73 +698,16 @@ button {
   padding: 18px 0 0;
 }
 .timeline::before {
-  display: none;
-}
-.itinerary-place-card {
-  margin-bottom: 18px;
-}
-.itinerary-place-card .place-card {
-  margin-top: 7px;
-  padding: 16px;
-  box-shadow: 4px 4px 0 #d8cfc0;
-}
-.itinerary-place-card .place-card.selected {
-  box-shadow: 4px 4px 0 var(--category-color);
-}
-.itinerary-place-card .card-topline {
-  gap: 9px;
-}
-.itinerary-place-card .number {
-  font-size: 15px;
-}
-.itinerary-place-card .place-card h2 {
-  margin-top: 10px;
-  font-size: clamp(19px, 2vw, 25px);
-}
-.itinerary-place-card .place-subline {
-  margin-bottom: 12px;
-}
-.itinerary-place-card .place-photo {
-  aspect-ratio: 2.25 / 1;
-  margin-bottom: 12px;
-}
-.itinerary-place-card .facts {
-  gap: 10px;
-  padding: 10px 0;
-}
-.itinerary-place-card .facts strong {
-  font-size: 10px;
-}
-.itinerary-place-card .description {
-  display: -webkit-box;
-  margin: 11px 0;
-  overflow: hidden;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  font-size: 11px;
-}
-.itinerary-place-card .tags {
-  gap: 4px;
-}
-.itinerary-place-card .tags span {
-  padding: 4px 6px;
-  font-size: 8px;
-}
-.itinerary-place-card .actions {
-  margin-top: 12px;
-}
-.itinerary-place-card .actions a {
-  padding: 9px 8px;
-  font-size: 9px;
-}
-.itinerary-source-label {
-  display: block;
-  color: var(--red);
-  font-size: 8px;
-  font-weight: 900;
-  letter-spacing: 0.12em;
+  content: "";
+  position: absolute;
+  top: 18px;
+  bottom: 20px;
+  left: 20px;
+  width: 1px;
+  background: var(--line);
 }
 .itinerary-item {
+  --itinerary-category: var(--red);
   position: relative;
   display: grid;
   grid-template-columns: 41px 1fr 10px;
@@ -789,11 +732,12 @@ button {
   font-weight: 900;
 }
 .itinerary-item.mapped .timeline-index {
-  border-color: var(--red);
-  color: var(--red);
+  border-color: var(--itinerary-category);
+  color: var(--itinerary-category);
 }
 .itinerary-item.selected .timeline-index {
-  background: var(--red);
+  border-color: var(--itinerary-category);
+  background: var(--itinerary-category);
   color: white;
   box-shadow: 2px 2px 0 var(--ink);
 }
@@ -803,15 +747,35 @@ button {
   border: 1px solid var(--line);
   background: #fffdf8;
 }
+.timeline-content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.itinerary-thumbnail {
+  float: right;
+  width: 92px;
+  height: 68px;
+  margin: 0 0 4px 12px;
+  border: 1px solid var(--itinerary-category);
+  border-bottom-width: 4px;
+  object-fit: cover;
+}
+.itinerary-item.mapped .timeline-content {
+  border-left: 4px solid var(--itinerary-category);
+}
 .itinerary-item.mapped:hover .timeline-content,
 .itinerary-item.selected .timeline-content {
-  border-color: var(--red);
+  border-color: var(--itinerary-category);
 }
 .timeline-content > span {
   color: var(--red);
   font-size: 8px;
   font-weight: 900;
   letter-spacing: 0.08em;
+}
+.itinerary-item.mapped .timeline-content > span {
+  color: var(--itinerary-category);
 }
 .timeline-content h4 {
   margin: 5px 0 0;
@@ -825,6 +789,13 @@ button {
   color: #69726e;
   font-size: 10px;
   line-height: 1.55;
+}
+.timeline-content b {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--itinerary-category);
+  font-size: 9px;
+  letter-spacing: 0.04em;
 }
 .timeline-content a {
   display: inline-block;
@@ -843,9 +814,9 @@ button {
   background: transparent;
 }
 .itinerary-item.mapped > i {
-  border-color: #3c9875;
-  background: #3c9875;
-  box-shadow: 0 0 0 3px #3c987526;
+  border-color: var(--itinerary-category);
+  background: var(--itinerary-category);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--itinerary-category) 18%, transparent);
 }
 .map-panel {
   position: relative;
@@ -987,6 +958,30 @@ button {
   background: #fffaf1;
   cursor: pointer;
   font-size: 22px;
+}
+.place-detail-modal {
+  position: relative;
+  width: min(680px, 100%);
+  padding: 12px;
+  background: var(--paper);
+  box-shadow: 12px 12px 0 #c94732dc;
+}
+.place-detail-scroll {
+  max-height: calc(100vh - 56px);
+  overflow-y: auto;
+}
+.place-detail-modal .modal-close {
+  z-index: 2;
+  top: -15px;
+  right: -15px;
+  box-shadow: 2px 2px 0 var(--ink);
+}
+.place-detail-modal .place-card {
+  margin-top: 0;
+  cursor: default;
+}
+.place-detail-modal .place-card:hover {
+  transform: none;
 }
 .note-grid {
   display: grid;

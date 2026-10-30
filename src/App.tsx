@@ -130,6 +130,7 @@ export default function App() {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [pageView, setPageView] = useState<PageView>("itinerary");
   const [activeDay, setActiveDay] = useState(initialItineraryDay);
+  const [detailPlace, setDetailPlace] = useState<Place | null>(null);
 
   useEffect(() => {
     const sidebar = sidebarRef.current;
@@ -220,6 +221,7 @@ export default function App() {
             onClick={() => {
               setPageView("places");
               setSelected(null);
+              setDetailPlace(null);
             }}
           >
             地點總覽
@@ -230,6 +232,7 @@ export default function App() {
             onClick={() => {
               setPageView("itinerary");
               setSelected(null);
+              setDetailPlace(null);
             }}
           >
             每日行程
@@ -347,6 +350,7 @@ export default function App() {
                   onClick={() => {
                     setActiveDay(day.id);
                     setSelected(null);
+                    setDetailPlace(null);
                   }}
                 >
                   <small>DAY {index + 1}</small>
@@ -367,27 +371,37 @@ export default function App() {
                 const place = item.placeId
                   ? places.find((candidate) => candidate.id === item.placeId)
                   : undefined;
-                return place ? (
-                  <div className="itinerary-place-card" key={item.id}>
-                    <span className="itinerary-source-label">
-                      NOTION · {item.category} · STEP {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <PlaceCard
-                      item={place}
-                      index={index}
-                      selected={selected?.id === place.id}
-                      onSelect={setSelected}
-                    />
-                  </div>
-                ) : (
-                  <article key={item.id} className="itinerary-item">
+                return (
+                  <article
+                    key={item.id}
+                    className={`itinerary-item ${place ? "mapped" : ""} ${selected?.id === place?.id ? "selected" : ""}`}
+                    style={
+                      {
+                        "--itinerary-category": place ? colors[place.category] : "#9a9186",
+                      } as CSSProperties
+                    }
+                    onClick={() => {
+                      if (!place) return;
+                      setSelected(place);
+                      setDetailPlace(place);
+                    }}
+                  >
                     <div className="timeline-index">{String(index + 1).padStart(2, "0")}</div>
                     <div className="timeline-content">
+                      {place && placeImages[place.id] && (
+                        <img
+                          className="itinerary-thumbnail"
+                          src={placeImages[place.id]}
+                          alt=""
+                          loading="lazy"
+                        />
+                      )}
                       <span>{item.category}</span>
                       <h4>{item.title}</h4>
                       {item.description && <p>{item.description}</p>}
+                      {place && <b>查看地點卡片 ＋</b>}
                     </div>
-                    <i aria-label="尚無地圖座標" />
+                    <i aria-label={place ? "已有地圖標記" : "尚無地圖座標"} />
                   </article>
                 );
               })}
@@ -445,6 +459,38 @@ export default function App() {
         </svg>
         <b>回到頂端</b>
       </button>
+      {detailPlace && (
+        <div
+          className="modal-backdrop"
+          role="presentation"
+          onMouseDown={() => setDetailPlace(null)}
+        >
+          <div
+            className="place-detail-modal"
+            role="dialog"
+            aria-modal="true"
+            aria-label={`${detailPlace.name} 地點資訊`}
+            onMouseDown={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="modal-close"
+              aria-label="關閉地點資訊"
+              onClick={() => setDetailPlace(null)}
+            >
+              ×
+            </button>
+            <div className="place-detail-scroll">
+              <PlaceCard
+                item={detailPlace}
+                index={itineraryDay.items.findIndex((item) => item.placeId === detailPlace.id)}
+                selected={false}
+                onSelect={setSelected}
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
