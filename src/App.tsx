@@ -466,6 +466,12 @@ export default function App() {
                       )}
                       <span>{item.category}</span>
                       <h4>{item.title}</h4>
+                      {place && (
+                        <p className="itinerary-hours">
+                          <b>開放／營業</b>
+                          {place.hours}
+                        </p>
+                      )}
                       {item.description && <p>{item.description}</p>}
                       {place && (
                         <div className="itinerary-item-actions">

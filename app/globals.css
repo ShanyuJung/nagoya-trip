@@ -808,6 +808,16 @@ button {
   font-size: 10px;
   line-height: 1.55;
 }
+.timeline-content .itinerary-hours {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  margin-top: 6px;
+}
+.timeline-content .itinerary-hours b {
+  flex: 0 0 auto;
+  font-size: 8px;
+}
 .timeline-content b {
   display: inline-block;
   color: var(--itinerary-category);
