@@ -4,7 +4,6 @@ import {
   MapContainer,
   Pane,
   Polyline,
-  Popup,
   TileLayer,
   Tooltip,
   useMap,
@@ -79,14 +78,12 @@ export function JourneyMap({
   places,
   selected,
   colors,
-  onSelect,
   onOpenPlace,
   showRoute = false,
 }: {
   places: MappablePlace[];
   selected: Place | null;
   colors: Record<PlaceCategory, string>;
-  onSelect: (place: Place) => void;
   onOpenPlace: (place: Place) => void;
   showRoute?: boolean;
 }) {
@@ -127,7 +124,7 @@ export function JourneyMap({
           key={item.id}
           center={item.position}
           radius={selected?.id === item.id ? 15 : 10}
-          eventHandlers={{ click: () => onSelect(item) }}
+          eventHandlers={{ click: () => onOpenPlace(item) }}
           pathOptions={{
             color: "#fffaf1",
             weight: 4,
@@ -149,12 +146,6 @@ export function JourneyMap({
               </button>
             </Tooltip>
           )}
-          <Popup>
-            <strong>{item.name}</strong>
-            <br />
-            {showRoute && <>第 {index + 1} 站 · </>}
-            {item.address} · {item.stay}
-          </Popup>
         </CircleMarker>
       ))}
     </MapContainer>

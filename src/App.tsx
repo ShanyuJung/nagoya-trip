@@ -505,7 +505,6 @@ export default function App() {
           places={mapPlaces}
           selected={selected}
           colors={colors}
-          onSelect={setSelected}
           onOpenPlace={setDetailPlace}
           showRoute={pageView === "itinerary"}
         />
