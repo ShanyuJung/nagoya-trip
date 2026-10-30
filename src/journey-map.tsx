@@ -1,5 +1,15 @@
 import { useEffect } from "react";
-import { CircleMarker, MapContainer, Popup, TileLayer, useMap, ZoomControl } from "react-leaflet";
+import {
+  CircleMarker,
+  MapContainer,
+  Pane,
+  Polyline,
+  Popup,
+  TileLayer,
+  Tooltip,
+  useMap,
+  ZoomControl,
+} from "react-leaflet";
 import type { Place, PlaceCategory } from "./data/places";
 
 type MappablePlace = Place & { position: [number, number] };
@@ -23,12 +33,16 @@ export function JourneyMap({
   selected,
   colors,
   onSelect,
+  showRoute = false,
 }: {
   places: MappablePlace[];
   selected: Place | null;
   colors: Record<PlaceCategory, string>;
   onSelect: (place: Place) => void;
+  showRoute?: boolean;
 }) {
+  const route = places.map((item) => item.position);
+
   return (
     <MapContainer
       center={[34.9, 136.82]}
@@ -43,7 +57,16 @@ export function JourneyMap({
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
       />
       <MapView places={places} selected={selected} />
-      {places.map((item) => (
+      {showRoute && route.length > 1 && (
+        <Pane name="itinerary-route-lines" style={{ zIndex: 350, pointerEvents: "none" }}>
+          <Polyline positions={route} pathOptions={{ color: "#fffaf1", weight: 9, opacity: 0.9 }} />
+          <Polyline
+            positions={route}
+            pathOptions={{ color: "#c94732", weight: 4, opacity: 0.9, dashArray: "10 9" }}
+          />
+        </Pane>
+      )}
+      {places.map((item, index) => (
         <CircleMarker
           key={item.id}
           center={item.position}
@@ -56,9 +79,15 @@ export function JourneyMap({
             fillOpacity: 1,
           }}
         >
+          {showRoute && (
+            <Tooltip permanent direction="center" className="route-order-label">
+              {index + 1}
+            </Tooltip>
+          )}
           <Popup>
             <strong>{item.name}</strong>
             <br />
+            {showRoute && <>第 {index + 1} 站 · </>}
             {item.address} · {item.stay}
           </Popup>
         </CircleMarker>

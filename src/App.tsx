@@ -425,7 +425,13 @@ export default function App() {
             <strong>{selected?.name ?? `${mapPlaces.length} 個已定位地點`}</strong>
           </div>
         </div>
-        <JourneyMap places={mapPlaces} selected={selected} colors={colors} onSelect={setSelected} />
+        <JourneyMap
+          places={mapPlaces}
+          selected={selected}
+          colors={colors}
+          onSelect={setSelected}
+          showRoute={pageView === "itinerary"}
+        />
         <div className="route-note">
           <span>ROUTE</span>
           <div>
