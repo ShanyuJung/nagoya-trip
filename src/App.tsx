@@ -480,14 +480,6 @@ export default function App() {
             </small>
           </div>
         </div>
-        <div className="map-legend">
-          {Object.values(PlaceCategory).map((item) => (
-            <span key={item}>
-              <i style={{ background: colors[item] }} />
-              {item}
-            </span>
-          ))}
-        </div>
       </section>
       <button
         type="button"

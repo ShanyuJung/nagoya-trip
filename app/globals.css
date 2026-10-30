@@ -915,27 +915,6 @@ button {
   color: #747d79;
   font-size: 9px;
 }
-.legend {
-  position: absolute;
-  z-index: 500;
-  left: 27px;
-  bottom: 25px;
-  display: flex;
-  gap: 13px;
-  padding: 9px 11px;
-  background: #fffaf1e6;
-  font-size: 9px;
-}
-.legend span {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-}
-.legend i {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-}
 .modal-backdrop {
   position: fixed;
   z-index: 2000;
@@ -1105,9 +1084,6 @@ button {
     right: 14px;
     bottom: 14px;
     width: min(320px, calc(100% - 28px));
-  }
-  .legend {
-    display: none;
   }
   .note-grid {
     grid-template-columns: 1fr;
