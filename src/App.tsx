@@ -93,15 +93,15 @@ export default function App() {
       <section ref={sidebarRef} className="sidebar">
         <header className="brand">
           <div className="eyebrow">
-            <span>NAGOYA · ISE · TRIP MAP</span>
-            <span>11.07 — 11.11</span>
+            <span>NAGOYA · ISE · OSAKA · NARA</span>
+            <span>11.07 — 11.14</span>
           </div>
           <h1>
             名古屋
             <br />
             旅程
           </h1>
-          <p>從名古屋一路走到伊勢、鳥羽與志摩。五日安排、住宿與候選餐廳，全都收進同一張地圖。</p>
+          <p>從名古屋、伊勢一路走到大阪與奈良。八日安排、住宿與候選餐廳，全都收進同一張地圖。</p>
         </header>
 
         <label className="search-box">
@@ -260,7 +260,7 @@ export default function App() {
         <footer>資料來源 · 旅程 Notion · 出發前請再次確認最新營業資訊</footer>
       </section>
 
-      <section className="map-panel" aria-label="名古屋與三重旅程地圖">
+      <section className="map-panel" aria-label="名古屋、三重、大阪與奈良旅程地圖">
         <div className="map-caption">
           <i />
           <div>
@@ -272,8 +272,8 @@ export default function App() {
         <div className="route-note">
           <span>ROUTE</span>
           <div>
-            <strong>名古屋 → 伊勢 → 鳥羽・志摩</strong>
-            <small>11/7 至 11/11 · 五日旅程</small>
+            <strong>名古屋 → 伊勢・鳥羽 → 大阪 → 奈良</strong>
+            <small>11/7 至 11/14 · 八日旅程</small>
           </div>
         </div>
         <div className="map-legend">
