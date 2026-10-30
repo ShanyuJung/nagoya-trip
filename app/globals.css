@@ -752,14 +752,29 @@ button {
   display: table;
   clear: both;
 }
-.itinerary-thumbnail {
+.itinerary-media {
   float: right;
   width: 92px;
-  height: 68px;
   margin: 0 0 4px 12px;
+}
+.itinerary-thumbnail {
+  display: block;
+  width: 100%;
+  height: 68px;
   border: 1px solid var(--itinerary-category);
   border-bottom-width: 4px;
   object-fit: cover;
+}
+.timeline-content .itinerary-media a {
+  display: block;
+  width: 100%;
+  margin-top: 7px;
+  padding: 5px 4px;
+  border: 1px solid var(--itinerary-category);
+  background: color-mix(in srgb, var(--itinerary-category) 7%, white);
+  color: var(--itinerary-category);
+  text-align: center;
+  line-height: 1.35;
 }
 .itinerary-item.mapped .timeline-content {
   border-left: 4px solid var(--itinerary-category);
@@ -798,18 +813,8 @@ button {
 }
 .itinerary-item-actions {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 8px;
   margin-top: 9px;
-}
-.timeline-content .itinerary-item-actions a {
-  margin: 0;
-  padding: 5px 8px;
-  border: 1px solid var(--itinerary-category);
-  background: color-mix(in srgb, var(--itinerary-category) 7%, white);
-  color: var(--itinerary-category);
 }
 .timeline-content a {
   display: inline-block;

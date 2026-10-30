@@ -407,19 +407,13 @@ export default function App() {
                     <div className="timeline-index">{String(index + 1).padStart(2, "0")}</div>
                     <div className="timeline-content">
                       {place && placeImages[place.id] && (
-                        <img
-                          className="itinerary-thumbnail"
-                          src={placeImages[place.id]}
-                          alt=""
-                          loading="lazy"
-                        />
-                      )}
-                      <span>{item.category}</span>
-                      <h4>{item.title}</h4>
-                      {item.description && <p>{item.description}</p>}
-                      {place && (
-                        <div className="itinerary-item-actions">
-                          <b>查看地點卡片 ＋</b>
+                        <div className="itinerary-media">
+                          <img
+                            className="itinerary-thumbnail"
+                            src={placeImages[place.id]}
+                            alt=""
+                            loading="lazy"
+                          />
                           {mappablePlace && nextPlace && (
                             <a
                               href={navigationUrl(mappablePlace, nextPlace, travelMode)}
@@ -430,6 +424,14 @@ export default function App() {
                               {travelMode === "driving" ? "自駕" : "大眾運輸"}到下一站 ↗
                             </a>
                           )}
+                        </div>
+                      )}
+                      <span>{item.category}</span>
+                      <h4>{item.title}</h4>
+                      {item.description && <p>{item.description}</p>}
+                      {place && (
+                        <div className="itinerary-item-actions">
+                          <b>查看地點卡片 ＋</b>
                         </div>
                       )}
                     </div>
