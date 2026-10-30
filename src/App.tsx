@@ -25,6 +25,24 @@ const colors: Record<PlaceCategory, string> = {
   [PlaceCategory.Event]: "#bd762b",
 };
 
+const optimizedImageNames = new Set([
+  "amakoya-hachimankamado",
+  "atsuta-horaiken-jingu",
+  "atsuta-horaiken",
+  "butasute",
+  "coffee-house-kako",
+  "fukusuke",
+  "futamiokitama-jinja",
+  "gyugin",
+  "ise-jingu-naiku",
+  "ista-coffee-elements",
+  "mukai-sake",
+  "ramen-tsuji",
+  "starbucks-naiku",
+  "taiwan-ramen-koyo",
+  "yokoyama-observatory",
+]);
+
 function hasPosition(place: Place): place is MappablePlace {
   return place.position !== null;
 }
@@ -42,6 +60,19 @@ function navigationUrl(from: MappablePlace, to: MappablePlace, mode: TravelMode)
   const origin = from.position.join(",");
   const destination = to.position.join(",");
   return `https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}&travelmode=${mode}`;
+}
+
+function thumbnailUrl(imageUrl: string) {
+  const parts = imageUrl.split("/");
+  const filename = parts[parts.length - 1]?.replace(/\.[^.]+$/, ".webp");
+  return filename ? `/images/places/thumbs/${filename}` : imageUrl;
+}
+
+function cardImageUrl(imageUrl: string) {
+  const parts = imageUrl.split("/");
+  const filename = parts[parts.length - 1] ?? "";
+  const basename = filename.replace(/\.[^.]+$/, "");
+  return optimizedImageNames.has(basename) ? `/images/places/optimized/${basename}.webp` : imageUrl;
 }
 
 function PlaceCard({
@@ -90,7 +121,11 @@ function PlaceCard({
       </div>
       {placeImages[item.id] && (
         <figure className="place-photo">
-          <img src={placeImages[item.id]} alt={`${item.name} 的 Notion 行程照片`} loading="lazy" />
+          <img
+            src={cardImageUrl(placeImages[item.id])}
+            alt={`${item.name} 的 Notion 行程照片`}
+            loading="lazy"
+          />
         </figure>
       )}
       <div className="facts">
@@ -410,9 +445,12 @@ export default function App() {
                         <div className="itinerary-media">
                           <img
                             className="itinerary-thumbnail"
-                            src={placeImages[place.id]}
+                            src={thumbnailUrl(placeImages[place.id])}
                             alt=""
                             loading="lazy"
+                            onError={(event) => {
+                              event.currentTarget.src = cardImageUrl(placeImages[place.id]);
+                            }}
                           />
                           {mappablePlace && nextPlace && (
                             <a
