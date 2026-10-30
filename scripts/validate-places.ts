@@ -37,6 +37,12 @@ const foodTypeTags = new Set([
   "伊勢烏龍麵",
   "天婦羅",
   "牛肉料理",
+  "漢堡",
+  "巧克力",
+  "飯糰",
+  "壽司",
+  "法式塔可",
+  "燒鳥",
 ]);
 const placeholderValues = new Set([
   "出發前確認最新營業時間",
@@ -58,19 +64,30 @@ const placeSchema = z
     tags: z.array(z.string().min(1)).min(1),
     maps: url,
     official: url.optional(),
+    verified: z.boolean().optional(),
     tabelog: z
       .object({
         url: url.refine((value) => new URL(value).hostname === "tabelog.com"),
-        rating: z.number().min(0).max(5),
-        verifiedAt: z.iso.date(),
+        rating: z.number().min(0).max(5).optional(),
+        verifiedAt: z.iso.date().optional(),
       })
       .optional(),
   })
   .superRefine((place, context) => {
     if (place.category === "餐廳" && place.position === null)
       context.addIssue({ code: "custom", path: ["position"], message: "餐廳必須有座標" });
-    if (place.category === "餐廳" && !place.tabelog)
+    if (place.category === "餐廳" && place.verified !== false && !place.tabelog)
       context.addIssue({ code: "custom", path: ["tabelog"], message: "餐廳必須有 Tabelog 資料" });
+    if (
+      place.category === "餐廳" &&
+      place.verified !== false &&
+      (!place.tabelog?.rating || !place.tabelog.verifiedAt)
+    )
+      context.addIssue({
+        code: "custom",
+        path: ["tabelog"],
+        message: "已核對餐廳必須有 Tabelog 評分與核對日期",
+      });
     if (place.category === "餐廳" && !place.tags.some((tag) => foodTypeTags.has(tag)))
       context.addIssue({ code: "custom", path: ["tags"], message: "餐廳必須有食物種類標籤" });
     for (const field of ["hours", "stay", "note"] as const) {
@@ -91,6 +108,7 @@ if (duplicates.length) {
   process.exit(1);
 }
 const restaurants = places.filter(({ category }) => category === "餐廳");
+const restaurantsWithTabelog = restaurants.filter(({ tabelog }) => tabelog);
 console.log(
-  `Validated ${places.length} places (${restaurants.length} restaurants with map and Tabelog data).`,
+  `Validated ${places.length} places (${restaurants.length} restaurants, ${restaurantsWithTabelog.length} with Tabelog links).`,
 );
