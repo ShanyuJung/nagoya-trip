@@ -153,18 +153,6 @@
   border: 1px solid var(--line);
   background: #ece6da;
 }
-.place-photo::after {
-  content: "NOTION TRIP PHOTO";
-  position: absolute;
-  right: 9px;
-  bottom: 8px;
-  padding: 4px 7px;
-  background: rgb(21 34 31 / 82%);
-  color: #fff;
-  font-size: 8px;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-}
 .place-photo img {
   display: block;
   width: 100%;
