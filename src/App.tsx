@@ -217,17 +217,6 @@ export default function App() {
         <nav className="view-switcher" aria-label="頁面切換">
           <button
             type="button"
-            className={pageView === "places" ? "active" : ""}
-            onClick={() => {
-              setPageView("places");
-              setSelected(null);
-              setDetailPlace(null);
-            }}
-          >
-            地點總覽
-          </button>
-          <button
-            type="button"
             className={pageView === "itinerary" ? "active" : ""}
             onClick={() => {
               setPageView("itinerary");
@@ -236,6 +225,17 @@ export default function App() {
             }}
           >
             每日行程
+          </button>
+          <button
+            type="button"
+            className={pageView === "places" ? "active" : ""}
+            onClick={() => {
+              setPageView("places");
+              setSelected(null);
+              setDetailPlace(null);
+            }}
+          >
+            地點總覽
           </button>
         </nav>
 
