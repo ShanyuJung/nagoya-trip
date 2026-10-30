@@ -475,7 +475,7 @@ export default function App() {
             </strong>
             <small>
               {pageView === "itinerary"
-                ? `${itineraryDay.items.length} 項行程 · ${itineraryPlaces.length} 個地圖標記`
+                ? `${itineraryDay.items.length} 項行程 · ${itineraryPlaces.length} 個地圖標記 · OSRM 道路路線`
                 : "11/7 至 11/14 · 八日旅程"}
             </small>
           </div>
