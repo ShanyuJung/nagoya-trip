@@ -459,7 +459,7 @@ export default function App() {
                               rel="noreferrer"
                               onClick={(event) => event.stopPropagation()}
                             >
-                              {travelMode === "driving" ? "自駕" : "大眾運輸"}到下一站 ↗
+                              查看{travelMode === "driving" ? "自駕" : "大眾運輸"}路線 ↗
                             </a>
                           )}
                         </div>
