@@ -142,7 +142,6 @@ export function JourneyMap({
                 aria-label={`開啟 ${item.name} 地點卡片`}
                 onClick={(event) => {
                   event.stopPropagation();
-                  onSelect(item);
                   onOpenPlace(item);
                 }}
               >
