@@ -37,6 +37,90 @@ function initialItineraryDay() {
   return itineraryDays[0]?.id ?? "11/7";
 }
 
+function PlaceCard({
+  item,
+  index,
+  selected,
+  onSelect,
+}: {
+  item: Place;
+  index: number;
+  selected: boolean;
+  onSelect: (place: Place) => void;
+}) {
+  return (
+    <article
+      className={`place-card ${selected ? "selected" : ""}`}
+      style={
+        {
+          "--category": colors[item.category],
+          "--category-color": colors[item.category],
+          "--category-contrast": item.category === PlaceCategory.Restaurant ? "#15221f" : "#fff",
+        } as CSSProperties
+      }
+      onClick={() => onSelect(item)}
+    >
+      <div className="card-topline">
+        <span className="number">{String(index + 1).padStart(2, "0")}</span>
+        <span className="category">{item.categoryEn}</span>
+        <span className={`status ${item.verified === false ? "pending" : ""}`}>
+          <i />
+          {item.verified === false ? "營業資訊待核對" : "營業資訊已核對"}
+        </span>
+      </div>
+      <h2>{item.name}</h2>
+      <div className="place-subline">
+        <p className="jp">{item.nameJa}</p>
+        {item.tabelog?.rating && (
+          <span className="tabelog-meta">
+            <span className="tabelog-score">
+              <span>Tabelog</span>
+              <strong>{item.tabelog.rating.toFixed(2)}</strong>
+            </span>
+            {item.tabelog.verifiedAt && <small>{item.tabelog.verifiedAt.replace(/-/g, ".")}</small>}
+          </span>
+        )}
+      </div>
+      {placeImages[item.id] && (
+        <figure className="place-photo">
+          <img src={placeImages[item.id]} alt={`${item.name} 的 Notion 行程照片`} loading="lazy" />
+        </figure>
+      )}
+      <div className="facts">
+        <div>
+          <span>營業時間</span>
+          <strong>{item.hours}</strong>
+        </div>
+        <div>
+          <span>安排建議</span>
+          <strong>{item.stay}</strong>
+        </div>
+      </div>
+      <p className="description">{item.note}</p>
+      <div className="tags">
+        {item.tags.map((tag) => (
+          <span key={tag}>{tag}</span>
+        ))}
+      </div>
+      <div className="actions">
+        <a className="primary" href={item.maps} target="_blank" rel="noreferrer">
+          開啟 Google Maps ↗
+        </a>
+        {item.official && (
+          <a className="secondary" href={item.official} target="_blank" rel="noreferrer">
+            官方資料
+          </a>
+        )}
+        {item.tabelog && (
+          <a className="secondary" href={item.tabelog.url} target="_blank" rel="noreferrer">
+            Tabelog
+          </a>
+        )}
+      </div>
+    </article>
+  );
+}
+
 export default function App() {
   const sidebarRef = useRef<HTMLElement>(null);
   const [category, setCategory] = useState<CategoryFilter>("全部");
@@ -231,93 +315,13 @@ export default function App() {
             </div>
             <div className="place-list">
               {visible.map((item, index) => (
-                <article
+                <PlaceCard
                   key={item.id}
-                  className={`place-card ${selected?.id === item.id ? "selected" : ""}`}
-                  style={
-                    {
-                      "--category": colors[item.category],
-                      "--category-color": colors[item.category],
-                      "--category-contrast":
-                        item.category === PlaceCategory.Restaurant ? "#15221f" : "#fff",
-                    } as CSSProperties
-                  }
-                  onClick={() => setSelected(item)}
-                >
-                  <div className="card-topline">
-                    <span className="number">{String(index + 1).padStart(2, "0")}</span>
-                    <span className="category">{item.categoryEn}</span>
-                    <span className={`status ${item.verified === false ? "pending" : ""}`}>
-                      <i />
-                      {item.verified === false ? "營業資訊待核對" : "營業資訊已核對"}
-                    </span>
-                  </div>
-                  <h2>{item.name}</h2>
-                  <div className="place-subline">
-                    <p className="jp">{item.nameJa}</p>
-                    {item.tabelog?.rating && (
-                      <span className="tabelog-meta">
-                        <span className="tabelog-score">
-                          <span>Tabelog</span>
-                          <strong>{item.tabelog.rating.toFixed(2)}</strong>
-                        </span>
-                        {item.tabelog.verifiedAt && (
-                          <small>{item.tabelog.verifiedAt.replace(/-/g, ".")}</small>
-                        )}
-                      </span>
-                    )}
-                  </div>
-                  {placeImages[item.id] && (
-                    <figure className="place-photo">
-                      <img
-                        src={placeImages[item.id]}
-                        alt={`${item.name} 的 Notion 行程照片`}
-                        loading="lazy"
-                      />
-                    </figure>
-                  )}
-                  <div className="facts">
-                    <div>
-                      <span>營業時間</span>
-                      <strong>{item.hours}</strong>
-                    </div>
-                    <div>
-                      <span>安排建議</span>
-                      <strong>{item.stay}</strong>
-                    </div>
-                  </div>
-                  <p className="description">{item.note}</p>
-                  <div className="tags">
-                    {item.tags.map((tag) => (
-                      <span key={tag}>{tag}</span>
-                    ))}
-                  </div>
-                  <div className="actions">
-                    <a className="primary" href={item.maps} target="_blank" rel="noreferrer">
-                      開啟 Google Maps ↗
-                    </a>
-                    {item.official && (
-                      <a
-                        className="secondary"
-                        href={item.official}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        官方資料
-                      </a>
-                    )}
-                    {item.tabelog && (
-                      <a
-                        className="secondary"
-                        href={item.tabelog.url}
-                        target="_blank"
-                        rel="noreferrer"
-                      >
-                        Tabelog
-                      </a>
-                    )}
-                  </div>
-                </article>
+                  item={item}
+                  index={index}
+                  selected={selected?.id === item.id}
+                  onSelect={setSelected}
+                />
               ))}
               {visible.length === 0 && (
                 <div className="empty-state">
@@ -363,29 +367,27 @@ export default function App() {
                 const place = item.placeId
                   ? places.find((candidate) => candidate.id === item.placeId)
                   : undefined;
-                return (
-                  <article
-                    key={item.id}
-                    className={`itinerary-item ${place ? "mapped" : ""} ${selected?.id === place?.id ? "selected" : ""}`}
-                    onClick={() => place && setSelected(place)}
-                  >
+                return place ? (
+                  <div className="itinerary-place-card" key={item.id}>
+                    <span className="itinerary-source-label">
+                      NOTION · {item.category} · STEP {String(index + 1).padStart(2, "0")}
+                    </span>
+                    <PlaceCard
+                      item={place}
+                      index={index}
+                      selected={selected?.id === place.id}
+                      onSelect={setSelected}
+                    />
+                  </div>
+                ) : (
+                  <article key={item.id} className="itinerary-item">
                     <div className="timeline-index">{String(index + 1).padStart(2, "0")}</div>
                     <div className="timeline-content">
                       <span>{item.category}</span>
                       <h4>{item.title}</h4>
                       {item.description && <p>{item.description}</p>}
-                      {place && (
-                        <a
-                          href={place.maps}
-                          target="_blank"
-                          rel="noreferrer"
-                          onClick={(event) => event.stopPropagation()}
-                        >
-                          Google Maps ↗
-                        </a>
-                      )}
                     </div>
-                    <i aria-label={place ? "已有地圖標記" : "尚無地圖座標"} />
+                    <i aria-label="尚無地圖座標" />
                   </article>
                 );
               })}
