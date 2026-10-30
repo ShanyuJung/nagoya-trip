@@ -380,7 +380,6 @@ export default function App() {
         ) : (
           <section className="itinerary-view">
             <div className="itinerary-intro">
-              <span>NOTION ITINERARY</span>
               <h2>每日行程表</h2>
               <p>依 Notion「第幾天」欄位同步；點選已有地點資料的行程，可在右側地圖定位。</p>
             </div>

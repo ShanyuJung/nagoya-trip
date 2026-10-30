@@ -608,14 +608,8 @@ button {
 .itinerary-view {
   margin-top: 27px;
 }
-.itinerary-intro > span {
-  color: var(--red);
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: 0.16em;
-}
 .itinerary-intro h2 {
-  margin: 7px 0 9px;
+  margin: 0 0 10px;
   font-family: Georgia, "Noto Serif TC", serif;
   font-size: clamp(34px, 4vw, 52px);
   line-height: 1;
@@ -624,7 +618,7 @@ button {
 .itinerary-intro p {
   margin: 0;
   color: #66706d;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.7;
 }
 .day-tabs {
@@ -656,18 +650,18 @@ button {
 }
 .day-tabs small {
   opacity: 0.58;
-  font-size: 7px;
+  font-size: 8px;
   font-weight: 900;
   letter-spacing: 0.11em;
 }
 .day-tabs strong {
-  font-size: 14px;
+  font-size: 16px;
 }
 .day-tabs span {
   position: absolute;
   top: 8px;
   right: 8px;
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 900;
   opacity: 0.55;
 }
@@ -681,17 +675,17 @@ button {
 }
 .itinerary-heading span {
   color: var(--red);
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 900;
   letter-spacing: 0.13em;
 }
 .itinerary-heading h3 {
   margin: 4px 0 0;
-  font-size: 20px;
+  font-size: 22px;
 }
 .itinerary-heading > b {
   color: #6e7773;
-  font-size: 9px;
+  font-size: 10px;
 }
 .timeline {
   position: relative;
@@ -728,7 +722,7 @@ button {
   border-radius: 50%;
   background: var(--paper);
   color: #747d79;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 900;
 }
 .itinerary-item.mapped .timeline-index {
@@ -754,7 +748,7 @@ button {
 }
 .itinerary-media {
   float: right;
-  width: 92px;
+  width: 102px;
   margin: 0 0 4px 12px;
 }
 .itinerary-thumbnail {
@@ -775,7 +769,7 @@ button {
   color: var(--itinerary-category);
   text-align: center;
   white-space: nowrap;
-  font-size: 8px;
+  font-size: 9px;
   letter-spacing: -0.03em;
   line-height: 1.35;
 }
@@ -788,7 +782,7 @@ button {
 }
 .timeline-content > span {
   color: var(--red);
-  font-size: 8px;
+  font-size: 9px;
   font-weight: 900;
   letter-spacing: 0.08em;
 }
@@ -798,14 +792,14 @@ button {
 .timeline-content h4 {
   margin: 5px 0 0;
   white-space: pre-line;
-  font-size: 14px;
+  font-size: 15px;
   line-height: 1.45;
 }
 .timeline-content p {
   margin: 7px 0 0;
   white-space: pre-line;
   color: #69726e;
-  font-size: 10px;
+  font-size: 11px;
   line-height: 1.55;
 }
 .timeline-content .itinerary-hours {
@@ -816,12 +810,12 @@ button {
 }
 .timeline-content .itinerary-hours b {
   flex: 0 0 auto;
-  font-size: 8px;
+  font-size: 9px;
 }
 .timeline-content b {
   display: inline-block;
   color: var(--itinerary-category);
-  font-size: 9px;
+  font-size: 10px;
   letter-spacing: 0.04em;
 }
 .itinerary-item-actions {
