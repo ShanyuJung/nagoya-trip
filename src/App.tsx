@@ -463,7 +463,6 @@ export default function App() {
                           )}
                         </div>
                       )}
-                      <span>{item.category}</span>
                       <h4>{item.title}</h4>
                       {place && (
                         <p className="itinerary-hours">

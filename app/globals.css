@@ -780,17 +780,8 @@ button {
 .itinerary-item.selected .timeline-content {
   border-color: var(--itinerary-category);
 }
-.timeline-content > span {
-  color: var(--red);
-  font-size: 9px;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-}
-.itinerary-item.mapped .timeline-content > span {
-  color: var(--itinerary-category);
-}
 .timeline-content h4 {
-  margin: 5px 0 0;
+  margin: 0;
   white-space: pre-line;
   font-size: 15px;
   line-height: 1.45;
