@@ -464,6 +464,7 @@ export default function App() {
           selected={selected}
           colors={colors}
           onSelect={setSelected}
+          onOpenPlace={setDetailPlace}
           showRoute={pageView === "itinerary"}
         />
         <div className="route-note">

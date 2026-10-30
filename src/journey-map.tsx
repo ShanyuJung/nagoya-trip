@@ -80,12 +80,14 @@ export function JourneyMap({
   selected,
   colors,
   onSelect,
+  onOpenPlace,
   showRoute = false,
 }: {
   places: MappablePlace[];
   selected: Place | null;
   colors: Record<PlaceCategory, string>;
   onSelect: (place: Place) => void;
+  onOpenPlace: (place: Place) => void;
   showRoute?: boolean;
 }) {
   const directRoute = places.map((item) => item.position);
@@ -135,7 +137,17 @@ export function JourneyMap({
         >
           {showRoute && (
             <Tooltip permanent direction="center" className="route-order-label">
-              {index + 1}
+              <button
+                type="button"
+                aria-label={`開啟 ${item.name} 地點卡片`}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onSelect(item);
+                  onOpenPlace(item);
+                }}
+              >
+                {index + 1}
+              </button>
             </Tooltip>
           )}
           <Popup>
