@@ -769,11 +769,14 @@ button {
   display: block;
   width: 100%;
   margin-top: 7px;
-  padding: 5px 4px;
+  padding: 5px 2px;
   border: 1px solid var(--itinerary-category);
   background: color-mix(in srgb, var(--itinerary-category) 7%, white);
   color: var(--itinerary-category);
   text-align: center;
+  white-space: nowrap;
+  font-size: 8px;
+  letter-spacing: -0.03em;
   line-height: 1.35;
 }
 .itinerary-item.mapped .timeline-content {
