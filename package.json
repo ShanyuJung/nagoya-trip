@@ -12,6 +12,7 @@
     "lint": "eslint . --max-warnings 0",
     "lint:commit": "commitlint",
     "validate:data": "node --import tsx scripts/validate-places.ts",
+    "sync:notion-images": "node --import tsx scripts/sync-notion-images.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check ."
   },

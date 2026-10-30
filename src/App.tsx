@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import { JourneyMap } from "./journey-map";
 import { PlaceCategory, places, type Place } from "./data/places";
+import { placeImages } from "./data/place-images";
 
 const categories = [
   "全部",
@@ -217,6 +218,15 @@ export default function App() {
                   </span>
                 )}
               </div>
+              {placeImages[item.id] && (
+                <figure className="place-photo">
+                  <img
+                    src={placeImages[item.id]}
+                    alt={`${item.name} 的 Notion 行程照片`}
+                    loading="lazy"
+                  />
+                </figure>
+              )}
               <div className="facts">
                 <div>
                   <span>營業時間</span>
